@@ -9,7 +9,7 @@
 FILE: index.html
 STYLE: White background, no borders, no card chrome
 GOAL: Works cleanly on iPhone 12 (390px wide) and desktop
-EDITING TIP: Search for "SECTION:" to find blocks quickly
+EDITING TIP: Search for "SECTION:" to jump between blocks.
 -->
 
 <style>
@@ -21,14 +21,13 @@ html,body{height:100%}
 body{
   margin:0;
   font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
-  line-height:1.6;
-  color:#1a1a1a;
+  line-height:1.7;
+  color:#171717;
   background:#ffffff;
 }
 img{max-width:100%;display:block;height:auto}
-p{margin:0 0 14px}
-h1,h2{margin:0}
-/* Prevent long words/URLs from causing horizontal scrolling on iPhone */
+a{color:inherit}
+/* Prevent long strings from forcing horizontal scroll on iPhone */
 *{overflow-wrap:anywhere; word-break:break-word;}
 
 /* =========================
@@ -37,11 +36,11 @@ h1,h2{margin:0}
 .wrap{
   width:min(1100px,92vw);
   margin:0 auto;
-  padding:28px 0 40px;
+  padding:24px 0 44px;
 }
 
 /* =========================
-   Desktop grid (Frame-based)
+   Grid Layout (Frame-based)
    ========================= */
 .grid{
   display:grid;
@@ -55,7 +54,6 @@ h1,h2{margin:0}
     "ph1 ph2 ph3 ph4"
     "contact contact contact contact";
 }
-
 .logo{grid-area:logo;display:flex;align-items:flex-start}
 .heading{grid-area:heading}
 .story{grid-area:story}
@@ -69,26 +67,44 @@ h1,h2{margin:0}
 .contact{grid-area:contact}
 
 /* =========================
-   Typography
+   Type styling (no borders, just rhythm)
    ========================= */
 .kicker{
   font-size:12px;
   letter-spacing:.14em;
   text-transform:uppercase;
-  color:#666;
+  color:#6b7280;
 }
 h1{
+  margin:6px 0 10px;
   font-size:clamp(28px,4.2vw,44px);
-  line-height:1.08;
+  line-height:1.06;
 }
 h2{
-  font-size:clamp(18px,2.2vw,20px);
   margin:0 0 12px;
+  font-size:clamp(18px,2.2vw,20px);
+  letter-spacing:-0.01em;
 }
-.muted{color:#555}
+.lede{
+  margin:0;
+  color:#4b5563;
+  max-width:72ch;
+}
+/* Subtle “box” feeling via spacing + a soft background wash (no borders) */
+.section{
+  padding:18px 18px 16px;
+  background:linear-gradient(180deg, rgba(17,24,39,.02), rgba(17,24,39,0));
+}
+/* Keep content readable on wide screens */
+.prose{max-width:78ch}
+p{margin:0 0 12px;color:#374151}
+p:last-child{margin-bottom:0}
+ul{margin:0;padding-left:18px;color:#374151}
+li{margin:0 0 10px}
+li:last-child{margin-bottom:0}
 
 /* =========================
-   Image sizing (explicit)
+   Images (explicit sizing notes)
    ========================= */
 /* Logo.jpg: recommended display width ~200–220px */
 .logo img{max-width:220px;height:auto}
@@ -96,27 +112,20 @@ h2{
 /* Alta.jpg: recommended portrait ~300×415 (aspect ratio preserved) */
 .alta img{
   width:100%;
-  aspect-ratio: 300 / 415; /* keeps the portrait feel on mobile */
+  aspect-ratio:300 / 415;
   object-fit:cover;
 }
 
-/* PH1j.jpg–PH4j.jpg: 300×400 (use aspect ratio so iPhone keeps shape) */
+/* PH1j.jpg–PH4j.jpg: each file is 300×400; keep same shape on all screens */
 .tile img{
   width:100%;
-  aspect-ratio: 3 / 4; /* 300×400 */
+  aspect-ratio:3 / 4;
   object-fit:cover;
 }
 
-/* Preserve line breaks in long copy while still wrapping safely */
-.prewrap{white-space:pre-wrap}
-
 /* =========================
-   iPhone 12 optimized responsive rules
+   Responsive rules
    ========================= */
-/*
-iPhone 12 logical width is 390px.
-We stack sections and use comfortable side padding.
-*/
 @media (max-width: 900px){
   .grid{
     grid-template-columns:1fr;
@@ -133,20 +142,13 @@ We stack sections and use comfortable side padding.
       "ph4"
       "contact";
   }
-  .wrap{width:min(720px,92vw);}
 }
-
-/* Target small phones (including iPhone 12) */
 @media (max-width: 430px){
-  .wrap{width:92vw;padding:18px 0 34px;}
+  .wrap{width:92vw;padding:16px 0 34px;}
   .grid{gap:20px;}
   .kicker{font-size:11px;}
-  p{margin:0 0 12px;}
-  /* Slightly smaller logo for narrow width */
   .logo img{max-width:190px;}
-  /* Keep images from becoming too tall on iPhone */
-  .alta img{max-height:520px;}
-  .tile img{max-height:520px;}
+  .section{padding:14px 14px 12px;}
 }
 </style>
 </head>
@@ -163,10 +165,10 @@ We stack sections and use comfortable side padding.
   </section>
 
   <!-- SECTION: Heading -->
-  <section class="heading">
+  <section class="heading section">
     <div class="kicker">Mongolian Tour Company</div>
     <h1>Nomad Whisper</h1>
-    <p class="muted">High Altai journeys shaped by family, land, and a calm pace.</p>
+    <p class="lede">High Altai journeys shaped by family, land, and a calm pace.</p>
   </section>
 
   <!-- SECTION: Alta Image -->
@@ -175,71 +177,56 @@ We stack sections and use comfortable side padding.
     <img src="assets/Alta.jpg" alt="Alta portrait">
   </section>
 
-  <!-- SECTION: Alta Story -->
-  <section class="story">
+  <!-- SECTION: Alta Story (no extra whitespace) -->
+  <section class="story section">
     <h2>Alta’s Story</h2>
-    <p class="muted">
-      I live in the town of Khovd, but my life is defined by the high Altai. A mother of three, a teacher by training, and a conservationist by heart, I have spent my career at the intersection of nomadic wisdom and modern science. After completing my Master’s in Environmental Science at Melbourne University, I felt a deep pull to return to these landscapes. I realized that the “Mongolian Calmness”—the stillness that protects our nomadic culture and our wildlife—is a treasure that I needed to help preserve.
-    </p>
-  </section>
-
-  <!-- SECTION: Mission -->
-  <section class="mission">
-    <h2>Mission</h2>
-    <div class="prewrap muted">
-I see myself as a bridge to the soul of the steppe. My work is rooted in a deep compassion for our nomadic heritage and the animals that live alongside us.
-
-I am building this vision together with my niece, Sun. We are a family team, supported by a close-knit circle of local drivers, translators, and mountain camps who have been part of my journey for years. Together, we invite you to see our home not as a visitor, but as a guest of the Altai mountains.
+    <div class="prose">
+      <p>I live in the town of Khovd, but my life is defined by the high Altai. A mother of three, a teacher by training, and a conservationist by heart, I have spent my career at the intersection of nomadic wisdom and modern science. After completing my Master’s in Environmental Science at Melbourne University, I felt a deep pull to return to these landscapes. I realized that the “Mongolian Calmness”—the stillness that protects our nomadic culture and our wildlife—is a treasure that I needed to help preserve.</p>
     </div>
   </section>
 
-  <!-- SECTION: Itinerary -->
-  <section class="itinerary">
+  <!-- SECTION: Mission (no extra whitespace) -->
+  <section class="mission section">
+    <h2>Mission</h2>
+    <div class="prose">
+      <p>I see myself as a bridge to the soul of the steppe. My work is rooted in a deep compassion for our nomadic heritage and the animals that live alongside us.</p>
+      <p>I am building this vision together with my niece, Sun. We are a family team, supported by a close-knit circle of local drivers, translators, and mountain camps who have been part of my journey for years. Together, we invite you to see our home not as a visitor, but as a guest of the Altai mountains.</p>
+    </div>
+  </section>
+
+  <!-- SECTION: Itinerary (bullet points each line, no extra whitespace) -->
+  <section class="itinerary section">
     <h2>Our June Journey: Seven Days in the Altai</h2>
-    <div class="prewrap muted">
-Our journey begins the moment you land at Khovd airport. From there, we leave the town behind and head toward the high Altai. We do not follow a strict hourly itinerary; we let the weather, the light, and the movement of the animals guide our path through the province.
-
-Into the High Altai: We base ourselves in a mountain ger camp situated in the rugged heights, the silent home of the Snow Leopard.
-
-The Shore of a Prehistoric Sea: We travel to Durgun Lake where sand dunes meet deep water.
-
-Ancient Galleries: We trek to rock art sites dating back over 20,000 years.
-
-The Steppe & The Sky: We cross the plains of Khomiin Tal National Park.
-
-The Waters of Khar Us Nuur: Vast reed beds alive with movement.
+    <div class="prose">
+      <p>Our journey begins the moment you land at Khovd airport. From there, we leave the town behind and head toward the high Altai. We do not follow a strict hourly itinerary; we let the weather, the light, and the movement of the animals guide our path through the province.</p>
+      <ul>
+        <li>Into the High Altai: We base ourselves in a mountain ger camp situated in the rugged heights. This is the silent home of the Snow Leopard. We move through this terrain as observers, hoping for a glimpse of these “ghosts,” while keeping our eyes on the ridges for Ibex and Argali sheep.</li><li>The Shore of a Prehistoric Sea: We travel to Durgun Lake, a massive saltwater basin that remains from ancient times. Here, the sand dunes meet the deep water, creating a landscape of stark contrasts and profound quiet.</li><li>Ancient Galleries: We trek to the Three Sengher Caves (Gurvan Senheriin Agui), Ishgen Tolgoi, and Nuhen Otgiin Buuts—sites filled with rock paintings and carvings dating back 20,000 years.</li><li>The Steppe & The Sky: We cross the vast plains of Khomiin Tal National Park, the sanctuary of the Takhi (Przewalski’s wild horse). As we drive and hike, we look for Gazelles darting across the horizon and Marmots near the rocky outcrops.</li><li>The Waters of Khar Us Nuur: Our path takes us by the “Black Water Lake,” where the vast reed beds are alive with movement.</li>
+      </ul>
     </div>
   </section>
 
   <!-- SECTION: Image Tiles -->
-  <!-- IMAGES: assets/PH1j.jpg–PH4j.jpg (display: 300×400 via aspect-ratio 3/4) -->
+  <!-- IMAGES: assets/PH1j.jpg–PH4j.jpg (each file generated at 300×400; aspect-ratio 3/4 keeps shape) -->
   <section class="ph1 tile"><img src="assets/PH1j.jpg" alt="Gallery tile 1"></section>
   <section class="ph2 tile"><img src="assets/PH2j.jpg" alt="Gallery tile 2"></section>
   <section class="ph3 tile"><img src="assets/PH3j.jpg" alt="Gallery tile 3"></section>
   <section class="ph4 tile"><img src="assets/PH4j.jpg" alt="Gallery tile 4"></section>
 
-  <!-- SECTION: Contact -->
-  <section class="contact">
+  <!-- SECTION: Contact (no extra whitespace) -->
+  <section class="contact section">
     <h2>Contact</h2>
-    <div class="prewrap muted">
-I am Sun, Alta’s niece and the bridge between our home in the Altai and the world beyond.
-
-Based in Brisbane, Australia, since 2017, I work as a Physiotherapy Assistant at the Mater Hospital. My professional background is rooted in care and clear communication—values that are essential when helping guests prepare for a journey as significant as this one.
-
-While Alta is our expert on the ground, I manage the logistics that make these expeditions possible. I have a deep love for the outdoors and a passion for sharing the 'Mongolian Calmness' of my homeland with others. My goal is to ensure your transition from the modern world to the high mountains is seamless, organized, and personal.
-
-If you have questions about the terrain, what to pack, or the details of our June exhibition, I am here to help in both English and Mongolian.
-
-We invite you to reach out to discuss the finer details of this June exhibition. We believe a conversation is the best way to start a journey.
-
-WhatsApp / Phone: [Insert Number]
-Email: [Insert Email]
+    <div class="prose">
+      <p>I am Sun, Alta’s niece and the bridge between our home in the Altai and the world beyond.</p><p>Based in Brisbane, Australia, since 2017, I work as a Physiotherapy Assistant at the Mater Hospital. My professional background is rooted in care and clear communication—values that are essential when helping guests prepare for a journey as significant as this one.</p><p>While Alta is our expert on the ground, I manage the logistics that make these expeditions possible. I have a deep love for the outdoors and a passion for sharing the 'Mongolian Calmness' of my homeland with others. My goal is to ensure your transition from the modern world to the high mountains is seamless, organized, and personal.</p><p>If you have questions about the terrain, what to pack, or the details of our June exhibition, I am here to help in both English and Mongolian.</p><p>We invite you to reach out to discuss the finer details of this June exhibition. We believe a conversation is the best way to start a journey.</p>
+      <ul>
+        <li><strong>WhatsApp / Phone:</strong> [Insert Number]</li>
+        <li><strong>Email:</strong> [Insert Email]</li>
+      </ul>
     </div>
   </section>
 
 </main>
 
-<footer class="muted" style="margin-top:34px;font-size:13px">
+<footer style="margin-top:34px;font-size:13px;color:#6b7280">
 © 2026 Nomad Whisper
 </footer>
 

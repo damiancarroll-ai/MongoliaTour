@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Nomad Whisper</title>
+
+<!--
+FILE: index.html
+STYLE: White background, no borders, no card chrome
+LAYOUT: Responsive grid based on Frame.png
+-->
+
+<style>
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+  line-height:1.6;
+  color:#1a1a1a;
+  background:#ffffff;
+}
+img{max-width:100%;display:block;height:auto}
+
+.wrap{width:min(1100px,92vw);margin:0 auto;padding:32px 0}
+
+.grid{
+  display:grid;
+  gap:32px;
+  grid-template-columns:1fr 1.2fr 1.2fr 1fr;
+  grid-template-areas:
+    "logo heading heading heading"
+    "story story story alta"
+    "mission mission mission mission"
+    "itinerary itinerary itinerary itinerary"
+    "ph1 ph2 ph3 ph4"
+    "contact contact contact contact";
+}
+
+.logo{grid-area:logo;display:flex;align-items:center}
+.heading{grid-area:heading}
+.story{grid-area:story}
+.alta{grid-area:alta}
+.mission{grid-area:mission}
+.itinerary{grid-area:itinerary}
+.ph1{grid-area:ph1}
+.ph2{grid-area:ph2}
+.ph3{grid-area:ph3}
+.ph4{grid-area:ph4}
+.contact{grid-area:contact}
+
+h1{margin:0;font-size:clamp(30px,4vw,44px)}
+h2{margin:0 0 12px;font-size:20px}
+.kicker{font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:#666}
+.muted{color:#555}
+
+.img-portrait{min-height:360px;object-fit:cover;width:100%}
+.img-tile{height:240px;object-fit:cover;width:100%}
+
+.prewrap{white-space:pre-wrap}
+
+@media(max-width:860px){
+  .grid{
+    grid-template-columns:1fr;
+    grid-template-areas:
+      "logo"
+      "heading"
+      "alta"
+      "story"
+      "mission"
+      "itinerary"
+      "ph1"
+      "ph2"
+      "ph3"
+      "ph4"
+      "contact";
+  }
+  .img-tile{height:220px}
+}
+</style>
+</head>
+
+<body>
+<div class="wrap">
+
+<main class="grid">
+
+<!-- SECTION: Logo -->
+<!-- IMAGE: assets/Logo.jpg (~220px wide) -->
+<section class="logo">
+  <img src="assets/Logo.jpg" alt="Nomad Whisper logo" style="max-width:220px">
+</section>
+
+<!-- SECTION: Heading -->
+<section class="heading">
+  <div class="kicker">Mongolian Tour Company</div>
+  <h1>Nomad Whisper</h1>
+  <p class="muted">High Altai journeys shaped by family, land, and a calm pace.</p>
+</section>
+
+<!-- SECTION: Alta Story -->
+<section class="story">
+<h2>Alta’s Story</h2>
+<p class="muted">
+I live in the town of Khovd, but my life is defined by the high Altai. A mother of three, a teacher by training, and a conservationist by heart, I have spent my career at the intersection of nomadic wisdom and modern science. After completing my Master’s in Environmental Science at Melbourne University, I felt a deep pull to return to these landscapes. I realized that the “Mongolian Calmness”—the stillness that protects our nomadic culture and our wildlife—is a treasure that I needed to help preserve.
+</p>
+</section>
+
+<!-- SECTION: Alta Image -->
+<!-- IMAGE: assets/Alta.jpg (approx 300×415 portrait) -->
+<section class="alta">
+<img class="img-portrait" src="assets/Alta.jpg" alt="Alta portrait">
+</section>
+
+<!-- SECTION: Mission -->
+<section class="mission">
+<h2>Mission</h2>
+<div class="prewrap muted">
+I see myself as a bridge to the soul of the steppe. My work is rooted in a deep compassion for our nomadic heritage and the animals that live alongside us.
+
+I am building this vision together with my niece, Sun. We are a family team, supported by a close-knit circle of local drivers, translators, and mountain camps who have been part of my journey for years. Together, we invite you to see our home not as a visitor, but as a guest of the Altai mountains.
+</div>
+</section>
+
+<!-- SECTION: Itinerary -->
+<section class="itinerary">
+<h2>Our June Journey: Seven Days in the Altai</h2>
+<div class="prewrap muted">
+Our journey begins the moment you land at Khovd airport. From there, we leave the town behind and head toward the high Altai. We do not follow a strict hourly itinerary; we let the weather, the light, and the movement of the animals guide our path through the province.
+
+Into the High Altai: We base ourselves in a mountain ger camp situated in the rugged heights, the silent home of the Snow Leopard.
+
+The Shore of a Prehistoric Sea: We travel to Durgun Lake where sand dunes meet deep water.
+
+Ancient Galleries: We trek to rock art sites dating back over 20,000 years.
+
+The Steppe & The Sky: We cross the plains of Khomiin Tal National Park.
+
+The Waters of Khar Us Nuur: Vast reed beds alive with movement.
+</div>
+</section>
+
+<!-- SECTION: Image Tiles -->
+<!-- IMAGES: assets/PH1j.jpg–PH4j.jpg (300×400) -->
+<section class="ph1"><img class="img-tile" src="assets/PH1j.jpg"></section>
+<section class="ph2"><img class="img-tile" src="assets/PH2j.jpg"></section>
+<section class="ph3"><img class="img-tile" src="assets/PH3j.jpg"></section>
+<section class="ph4"><img class="img-tile" src="assets/PH4j.jpg"></section>
+
+<!-- SECTION: Contact -->
+<section class="contact">
+<h2>Contact</h2>
+<div class="prewrap muted">
+I am Sun, Alta’s niece and the bridge between our home in the Altai and the world beyond.
+
+Based in Brisbane, Australia, since 2017, I work as a Physiotherapy Assistant at the Mater Hospital.
+
+While Alta is our expert on the ground, I manage the logistics that make these expeditions possible.
+
+WhatsApp / Phone: [Insert Number]
+Email: [Insert Email]
+</div>
+</section>
+
+</main>
+
+<footer class="muted" style="margin-top:40px;font-size:13px">
+© 2026 Nomad Whisper
+</footer>
+
+</div>
+</body>
+</html>

@@ -15,9 +15,8 @@ CHANGES:
 - Contact email is a clickable mailto link.
 -->
 
-<style>
-/* =========================
-   Base / Reset
+<style>/* =========================
+   Base / Reset (mobile-safe)
    ========================= */
 *{box-sizing:border-box}
 html,body{height:100%}
@@ -27,18 +26,22 @@ body{
   line-height:1.7;
   color:#1a1a1a;
   background:#ffffff;
+  -webkit-text-size-adjust:100%; /* iOS Safari/Chrome: prevent unexpected text zoom */
+  text-rendering:optimizeLegibility;
 }
 img{max-width:100%;display:block;height:auto}
 a{color:inherit}
 *{overflow-wrap:anywhere; word-break:break-word;}
+/* Prevent grid children from forcing overflow on iOS */
+.grid > *{min-width:0}
 
 /* =========================
-   Wrapper
+   Wrapper (safe-area aware)
    ========================= */
 .wrap{
   width:min(1100px,92vw);
   margin:0 auto;
-  padding:28px 0 40px;
+  padding:28px max(env(safe-area-inset-right), 0px) 40px max(env(safe-area-inset-left), 0px);
 }
 
 /* =========================
@@ -95,8 +98,8 @@ li:last-child{margin-bottom:0}
 }
 
 /* PH tiles:
-   FILE SIZE: 250×300 each (assets/PH1j.jpg..PH4j.jpg)
-   DISPLAY: fit inside grid column with consistent width, centered, with breathing room.
+   DISPLAY: keep consistent sizing on desktop + mobile (no stretching).
+   iPhone 12: images scale down cleanly; no overflow.
 */
 .tile{display:flex;justify-content:center}
 .tile img{
@@ -107,6 +110,7 @@ li:last-child{margin-bottom:0}
 
 /* =========================
    Responsive (Mobile)
+   Optimized for iPhone 12 (390px)
    ========================= */
 @media (max-width: 900px){
   .grid{
@@ -125,15 +129,16 @@ li:last-child{margin-bottom:0}
       "contact";
     gap:22px;
   }
-  .tile{justify-content:flex-start}
-  .tile img{width:100%;}
+  .logo{justify-content:flex-start}
+  /* Keep tile size consistent (centered) instead of stretching full width */
+  .tile{justify-content:center}
 }
 @media (max-width: 430px){
-  .wrap{width:92vw;padding:18px 0 34px;}
+  .wrap{width:92vw;padding:18px max(env(safe-area-inset-right), 0px) 34px max(env(safe-area-inset-left), 0px);}
   .logo img{max-width:190px;}
   p{margin:0 0 10px;}
-}
-</style>
+  .grid{gap:20px;}
+}</style>
 </head>
 
 <body>
